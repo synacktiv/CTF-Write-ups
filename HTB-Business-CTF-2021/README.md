@@ -34,7 +34,8 @@ We decided to do few write-ups for the challenges we liked.
 [Theta](./theta.md "Theta")
 
 ### Crypto
-FIXME
+
+[Got Ransomed](./gotransomed.md "Got Ransomed")
 
 ### Reverse
 FIXME
