@@ -1,8 +1,8 @@
 # HackTheBox Business CTF 2021
 
-3 days from 23 to 25/07/2021.
+The CTF was held from the 23rd to the 25th of July 2021.
 
-We decided to do few write-ups for the challenges we liked.
+We decided to do a few write-ups for the challenges we liked.
 
 ## Overview
 
