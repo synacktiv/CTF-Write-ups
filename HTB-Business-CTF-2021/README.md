@@ -22,6 +22,12 @@ We decided to do a few write-ups for the challenges we liked.
 
 [Rocket](./rocket.md "Rocket")
 
+[Fire](./fire.md "Fire")
+
+[Virtual](./virtual.md "Virtual")
+
+[Parkor](./parkor.md "Parkor")
+
 ### Pwn
 
 [Backtrack](./backtrack.md "Backtrack")
