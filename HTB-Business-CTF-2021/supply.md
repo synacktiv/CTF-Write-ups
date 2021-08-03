@@ -12,7 +12,7 @@ PORT   STATE SERVICE VERSION
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-For this challenge, were presented a login page, and a feature to sign in as guest on the web application:
+For this challenge, we were presented a login page, and a feature to sign in as guest on the web application:
 
 ![Login page](./img/supply_1.png)
 
@@ -117,6 +117,7 @@ $ aws s3 --endpoint-url http://s3.supply.htb ls assets/
                            
 $ aws s3 --endpoint-url http://s3.supply.htb sync s3://assets .
 download: s3://assets/sessions/c32d3081-d9ee-4c0b-9f05-fe402cbf1138 to sessions/c32d3081-d9ee-4c0b-9f05-fe402cbf1138
+```
 
 ```bash
 $ xxd c32d3081-d9ee-4c0b-9f05-fe402cbf1138
@@ -125,7 +126,7 @@ $ xxd c32d3081-d9ee-4c0b-9f05-fe402cbf1138
 00000020: 948c 0870 6173 7377 6f72 6494 6802 752e  ...password.h.u.
 ```
 
-The sessions content looked-like serialized data. We then tried to decode them using `pickletools`:
+The sessions content looked-like serialized data. We then tried to decode them using [pickletools](https://docs.python.org/3/library/pickletools.html):
 
 ```bash
 $ python3 -m pickletools c32d3081-d9ee-4c0b-9f05-fe402cbf1138 

