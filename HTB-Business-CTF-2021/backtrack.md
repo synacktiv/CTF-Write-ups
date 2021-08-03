@@ -15,7 +15,7 @@ The source code is very short :
 4. The ``memory_loop()`` is responsible of allocating and freeing the buffers in the ``buffers`` for each newly added file descriptor in ``fds`` and for each delete ones (from the menu).
 5. The ``menu()`` executed in the main thread allows to perform several allocation : *listing* the ``fds`` array, *removing* an entry in ``fds`` or *dislaying* the buffer associated to an entry in ``fds``.
 
-![Threads](images/overview.png)
+![Threads](img/overview.png)
 
 The ``fds`` and ``buffers`` objects are defined as globals :
 
@@ -77,7 +77,7 @@ end
 
 Overwriting the libc metata with an address shows that the chunk is returned after two allocations (the next one being the chunk used as UAF) :
 
-![Controled chunk allocation](images/takeover.png)
+![Controled chunk allocation](img/takeover.png)
 
 The libc expect to find metadata in this last chunk. So if we allocate again a new chunk, it will use the first 64 bytes located at this address as the next chunk. So the exploitation never allocates again a new buffer after this step.
 
@@ -98,7 +98,7 @@ As the address of all the first allocations are known (using the pointer leaked 
 3. Have one entry pointing to itself : so we can update it and get reusable R/W primitives
 4. Have another non-NULL entry pointing to the victim we want to read or write
 
-![Fake buffer table](images/fake_vector.png)
+![Fake buffer table](img/fake_vector.png)
 
 With this setup, updating this table can be done by filling buffer 1. Reading memory at an arbitrary address can be done by using the menu with buffer index 3. Writing to this address can be done by sending data on the connection corresponding to the buffer 3.
 
