@@ -111,16 +111,14 @@ Most of the bytes are just `0xff`, meaning the primes have only a few bytes of e
 
 From the `getPrime` function, the generated primes `p` and `q` can be represented as:
 
-```
 p = u<sub>1</sub>(2<sup>1024</sup> + v<sub>1</sub>) + w<sub>1</sub> = u<sub>1</sub>2<sup>1024</sup> + u<sub>1</sub>v<sub>1</sub> + w<sub>1</sub>
 
 q = u<sub>2</sub>(2<sup>1024</sup> + v<sub>2</sub>) + w<sub>2</sub> = u<sub>2</sub>2<sup>1024</sup> + u<sub>2</sub>v<sub>2</sub> + w<sub>2</sub>
-```
 
 Therefore, the modulus `n` can be written as:
 
-```
 n = pq
+
   = (u<sub>1</sub>2<sup>1024</sup> + u<sub>1</sub>v<sub>1</sub> + w<sub>1</sub>)(u<sub>2</sub>2<sup>1024</sup> + u<sub>2</sub>v<sub>2</sub> + w<sub>2</sub>)
 
   = u<sub>1</sub>u<sub>2</sub>2<sup>2048</sup> + u<sub>1</sub>u<sub>2</sub>v<sub>2</sub>2<sup>1024</sup> + u<sub>1</sub>w<sub>2</sub>2<sup>1024</sup> + u<sub>1</sub>v<sub>1</sub>u<sub>2</sub>2<sup>1024</sup> + u<sub>1</sub>v<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + u<sub>1</sub>v<sub>1</sub>w<sub>2</sub> + w<sub>1</sub>u<sub>2</sub>2<sup>1024</sup> + w<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + w<sub>1</sub>w<sub>2</sub>
@@ -129,24 +127,22 @@ n = pq
 
   = a2<sup>2048</sup> + b2<sup>1024</sup> + c
 
-with a = u<sub>1</sub>u<sub>2</sub>
+with:
 
-     b = u<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + u<sub>1</sub>w<sub>2</sub> + u<sub>1</sub>v<sub>1</sub>u<sub>2</sub> + w<sub>1</sub>u<sub>2</sub>
-     
-     c = u<sub>1</sub>v<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + u<sub>1</sub>v<sub>1</sub>w<sub>2</sub> + w<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + w<sub>1</sub>w<sub>2</sub>
-```
+a = u<sub>1</sub>u<sub>2</sub>
 
-By substituting `2^2014` with `x`, we get:
+b = u<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + u<sub>1</sub>w<sub>2</sub> + u<sub>1</sub>v<sub>1</sub>u<sub>2</sub> + w<sub>1</sub>u<sub>2</sub>
 
-```
+c = u<sub>1</sub>v<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + u<sub>1</sub>v<sub>1</sub>w<sub>2</sub> + w<sub>1</sub>u<sub>2</sub>v<sub>2</sub> + w<sub>1</sub>w<sub>2</sub>
+
+
+By substituting 2<sup>2014</sup> with x, we get:
+
 n = ax<sup>2</sup> + bx + c
-```
 
 The generated modulus can be represented as a second-degree polynomial! This is good news as such a polynimial can be trivially factorised into:
 
-```
-ax<sup>2</sup> + bx + c = (s1x + t1)(s2x + t2) = pq
-```
+ax<sup>2</sup> + bx + c = (s<sub>1</sub>x + t<sub>1</sub>)(s<sub>2</sub>x + t<sub>2</sub>) = pq
 
 `a`, `b` and `c` can be retrieved simply by looking at the hexadecimal representation of `n`:
 
@@ -170,11 +166,11 @@ from sympy import mod_inverse, poly
 from sympy.abc import x
 
 
-ct = 0x<sup>2</sup>c599fad32765bdd5ac1de9284cd6fd6e5f47e097ab42c457fd4b8c2ca49eb6c437871539786ba64f3bf23027fd1be69a25a974497639c45cad549f3174630f6c4faceb81d6be893842231c95b214411eec1e4600fd7c323a6f45667b9497b98dc37f401f741cae4e6520517be29a29d14a28c7f55c45ad0a33fd62ffca573da8dcd9b5aa8cf29a1d2b3047782713c31168fa1e90006fd73328844c382b8757ef9459079346a74c1747a27e03852aaf9b33a114ecff94d0d6858abb188426e859f37cf9c2f1b28fcba9fba1e5f16eff14122bf7b3e15ebf992ea8c890f253f2d351492175aa1796a7756d57e63c1d1e8d06474a4e1afc2e65a5a0a15bf8097965ac250fe71736102
+ct = 0x2c599fad32765bdd5ac1de9284cd6fd6e5f47e097ab42c457fd4b8c2ca49eb6c437871539786ba64f3bf23027fd1be69a25a974497639c45cad549f3174630f6c4faceb81d6be893842231c95b214411eec1e4600fd7c323a6f45667b9497b98dc37f401f741cae4e6520517be29a29d14a28c7f55c45ad0a33fd62ffca573da8dcd9b5aa8cf29a1d2b3047782713c31168fa1e90006fd73328844c382b8757ef9459079346a74c1747a27e03852aaf9b33a114ecff94d0d6858abb188426e859f37cf9c2f1b28fcba9fba1e5f16eff14122bf7b3e15ebf992ea8c890f253f2d351492175aa1796a7756d57e63c1d1e8d06474a4e1afc2e65a5a0a15bf8097965ac250fe71736102
 n = 0x3b599770048e9bacffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffd5449e2d90aa5712a21ba34aa1b2c62fbebe83d77a5da7f20000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c04599c8b423852045a385916c68dd3eba0aaef4488cae357fc2b52aecd0d256103eac3fc3b2a1
 e = 0x10001
 a = 0x3b599770048e9bad
-b = -0x<sup>2</sup>abb61d26f55a8ed5de45cb55e4d39d041417c2885a2580e
+b = -0x2abb61d26f55a8ed5de45cb55e4d39d041417c2885a2580e
 c = 0x1c04599c8b423852045a385916c68dd3eba0aaef4488cae357fc2b52aecd0d256103eac3fc3b2a1
 
 assert(a * 2 ** 2048 + b * 2 ** 1024 + c == n)
