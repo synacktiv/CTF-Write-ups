@@ -111,10 +111,10 @@ HTB{9077a_l0ve_H7a}
 
 When searching for the root flag, we noticed multiple interesting files and directories:
 
-* C:\Users\dev\Documents\Database.kdbx
-* C:\Users\Administrator\.docker
-* C:\Users\Administrator\.minikube
-* C:\Users\Administrator\.VirtualBox
+* C:\Users\dev\Documents\\Database.kdbx
+* C:\Users\Administrator\\.docker
+* C:\Users\Administrator\\.minikube
+* C:\Users\Administrator\\.VirtualBox
 
 The KeePass database was protected by a password so we cracked it using john:
 
