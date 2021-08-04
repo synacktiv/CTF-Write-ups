@@ -26,7 +26,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 ```
 
 For this challenge, we were given a web application listening on the port 8080, hosted on Windows, that provided a contact form with the indication "`We usually respond to queries after a few minutes`":
-![Virtual web](img/virtual_1.png)
+![Virtual web](../img/virtual_1.png)
 
 We noticed we could send arbitrary links that ended being browsed by Internet Explorer. For example, by submitting the form with the message `http:///10.10.14.65:8080/aa`, we received the following request:
 ```bash
@@ -174,10 +174,10 @@ $ xfreerdp /u:Administrator /p:'Test1234' /v:10.129.1.26
 [03:31:09:044] [9943:9944] [INFO][com.freerdp.client.common.cmdline] - loading channelEx cliprdr
 ```
  
-![Docker VM graphical console](img/virtual_2.png)
+![Docker VM graphical console](../img/virtual_2.png)
 
 The `dev` user was on the sudoers so it was allowed to escalate its privileges to `root` inside the VM and to read the root flag:
 
-![Docker VM graphical console logged in](img/virtual_3.png) 
+![Docker VM graphical console logged in](../img/virtual_3.png) 
 
 From the screen, we read `HTB{v80X_G0t_m4n4g3d}`.

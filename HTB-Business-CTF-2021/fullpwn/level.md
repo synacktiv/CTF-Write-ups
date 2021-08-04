@@ -32,7 +32,7 @@ HCMS_ADMIN_PREFIX=admin
 These credentials are valid on port 80 on HorizontCMS:
 `admin:N>2sM4^R_j>g)cfe`
 
-![Successfully login as admin](img/horrizon_admin_login.png "Successfully login as admin")
+![Successfully login as admin](../img/horrizon_admin_login.png "Successfully login as admin")
 
 With admin privileges we can add a malicous plugin, here we used a modified [GoogleMaps](https://github.com/ttimot24/GoogleMaps) plugin with a reverse shell: 
 

@@ -12,7 +12,7 @@ Host is up (0.19s latency).
 |_http-title: Did not follow redirect to http://manager.htb:8080/openam/
 ```
 
-![Openam login portal](img/openam_portal.png "Openam login portal")
+![Openam login portal](../img/openam_portal.png "Openam login portal")
 
 This version of OpenAM is vulnerable to a deserialization attack.
 The exploit can be found [here](https://www.exploit-db.com/exploits/50131).
@@ -31,7 +31,7 @@ tomcat
 ```
 By running this exploit can we establish a revshell to grab the user flag:
 
-![Getting a reverse shell](img/revshell.png "Getting a reverse shell")
+![Getting a reverse shell](../img/revshell.png "Getting a reverse shell")
 
 ```
 tomcat@manager:~$ cat /opt/tomcat/user.txt

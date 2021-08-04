@@ -14,7 +14,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 For this challenge, we were presented a login page, and a feature to sign in as guest on the web application:
 
-![Login page](./img/supply_1.png)
+![Login page](../img/supply_1.png)
 
 By browsing to the home page of the web application, we noticed some assets were not loading as it was using a custom domain name:
 

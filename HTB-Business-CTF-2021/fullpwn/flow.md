@@ -25,7 +25,7 @@ On port 8080 the web server is hosting a Jenkins. Unfortunately default credenti
 
 On port an Airflow application is also prompting us for credentials.
 
-![Airflow login](img/login_airflow.png "Airflow login")
+![Airflow login](../img/login_airflow.png "Airflow login")
 
 When trying to connect on this interface we noticed the web server assigned us a flask cookie. We tried to bruteforce the cookie secret key using [flask-unsign](https://pypi.org/project/flask-unsign/) and it was successful:
 
@@ -91,7 +91,7 @@ $ ./signer2.py
 By changing the cookie in our browser, we sucessfully obtain an admin session. While crawling the application we were looking for juicy information such as password. The Jenkins password was indeed in the application. It was in the Admin/Variables menu. Cleartext passwords can be obtained by exporting them:
 
 
-![Getting credentials](img/get_password.png "Getting credentials")
+![Getting credentials](../img/get_password.png "Getting credentials")
 
 The exported file contains the credentials:
 ```
@@ -106,7 +106,7 @@ The credentials root:sVLfGQzHyW8WM22 were working on the Jenkins login portal po
 
 Running a groovy script on Jenkins, we found amelia credentials.
 
-![Amelia password](img/amelia_password.png "Amelia password")
+![Amelia password](../img/amelia_password.png "Amelia password")
 
 Another groovy script can retrieve amelia credentials. These credentials can be used on SSH to get user flag.
 ```

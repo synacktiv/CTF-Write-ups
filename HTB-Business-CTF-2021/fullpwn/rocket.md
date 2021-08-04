@@ -19,7 +19,7 @@ The exploit can be found [here](https://www.exploit-db.com/exploits/49960).
 
 This exploit needs a low priv user email and an admin email. Those emails can be found on the website port 80.
 
-![Users email addresses](img/email.png "Users email addresses")
+![Users email addresses](../img/email.png "Users email addresses")
 
 Here we will use `emmap@rocket.htb` (low priv user) and `ezekiel@rocket.htb` (admin user). In the current case the exploit needs to be modified to remove 2FA. We applied the following patch:
 
@@ -85,7 +85,7 @@ const require = console.log.constructor('return process.mainModule.require')();
 })();
 ```
 
-![RCE with the web hook](img/rce_admin.png "RCE with the web hook")
+![RCE with the web hook](../img/rce_admin.png "RCE with the web hook")
 
 When hitting the Webhook URL(see screen above) the revshell is connecting back to us:
 

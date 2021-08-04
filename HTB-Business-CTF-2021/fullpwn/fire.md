@@ -27,7 +27,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 ```
 
 For this challenge, we were given a PHP application on the port 8080 hosted on Windows:
-![Home page](img/fire_1.png)
+![Home page](../img/fire_1.png)
 
 We shortly analyzed the form of the links included on the home page and we noticed a LFI (Local File Inclusion) vulnerability:
 ```bash
@@ -279,7 +279,7 @@ EXIT;
 
 Once the backup was created, the web shell was created and we were able to execute arbitrary commands as the IIS user:
 
-![Web shell](img/fire_2.png)
+![Web shell](../img/fire_2.png)
 
 We then created a reverse shell using the same netcat pre-built binary: 
 

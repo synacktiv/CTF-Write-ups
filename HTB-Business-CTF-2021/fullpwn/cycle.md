@@ -93,7 +93,7 @@ Data Source=localhost;Initial Catalog=Production;Us"
     text "UTF-16LE", "er id=sqlsvc;Password={0}
 ```
 The exe does a simple AES decryption in order to connect to the sql database. We can retrieve the password with [cyberchef](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true)AES_Decrypt(%7B'option':'Base64','string':'dcZKW0ktsCDNlLjH3wEdmnURrL1okbk6FJYE5/hpfe8%3D'%7D,%7B'option':'Base64','string':'nXL6E8RtlJuaipLQtVQo9A%3D%3D'%7D,'CBC','Raw','Raw',%7B'option':'Hex','string':''%7D,%7B'option':'Hex','string':''%7D)&input=ZGNreHdhTDRlM1plSmk4VDAwNzhyTTNyd0IzOVMrem1uclBmMU9OMXgyQT0):
-![AES password decryption](img/aes_decrypt.png "AES password decryption")
+![AES password decryption](../img/aes_decrypt.png "AES password decryption")
 
 We obtain the following credentials: `sqlsvc:T7Fjr526aD67tGJQ`.
 
@@ -168,7 +168,7 @@ escorpion10      (?)
 ```
 
 With GFisher we can abuse the constrained delegation to takeover the domain.
-![Constrained delegation abuse](img/constrained_delegation.png "Constrained delegation abuse")
+![Constrained delegation abuse](../img/constrained_delegation.png "Constrained delegation abuse")
 
 We used impacket to request a TGT for the domain Administrator account and get the root flag.
 ```
