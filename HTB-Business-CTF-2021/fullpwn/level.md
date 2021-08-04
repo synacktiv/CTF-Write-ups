@@ -10,6 +10,8 @@ PORT     STATE SERVICE          VERSION
 8081/tcp open  blackice-icecap?
 ```
 
+### User flag
+
 Apache Flink on port 8081 is vulnerable to path traversal. Metasploit has a module for it. We can read the .env file in the webroot:
 ```
 msf6 auxiliary(scanner/http/apache_flink_jobmanager_traversal) > run
@@ -63,6 +65,8 @@ albert@level:/home/albert$ cat user.txt
 HTB{0utd4t3d_cms_1s_n0_g00d}
 ```
 
+### Root flag
+
 By shorty searching for privilege escalation paths, we can notice the operating system is vulnerable to two consecutive LPE (Local Privilege Escalation) vulnerabilities:
 
 * A double free vulnerability in Ubuntu shiftfs driver ([CVE-2021-3492](https://www.synacktiv.com/publications/exploitation-of-a-double-free-vulnerability-in-ubuntu-shiftfs-driver-cve-2021-3492.html)), found by our team mate VDehors and submitted to [Pwn2Own Vancouver 2021](https://twitter.com/thezdi/status/1380233495851712512).
@@ -86,6 +90,8 @@ albert@level$ /sbin/sysctl -n 'kernel.unprivileged_userns_clone'
 1
 ```
 As the [exploit](https://github.com/synacktiv/CVE-2021-3492/tree/master/exploit) written by Vdehors for his vulnerability CVE-2021-3492 was only targetting Linux kernel versions 5.8, he slightly modified his exploit in order to also support Linux kernel versions 5.4. In the initial exploit, the synchronization between kernel and userspace was done using a new feature of userfaultfd called write-protect. This feature is not present in kernel versions 5.4 so this part of the exploit has been replaced with the legacy userfaultfd page faults. To be able to preempt the kernel for each `copy_to_user()`, the userland structure is placed on two different pages and these pages are untouched to trigger the *userfaultfd* wakeup.
+
+**Note**: the exploit for Linux kernels 5.4 has been added by Vdehors on the [Github repository](https://github.com/synacktiv/CVE-2021-3492/blob/master/exploit/main_5.4.c).
 
 Finally, we can use his exploit to solve the box:
 ```
