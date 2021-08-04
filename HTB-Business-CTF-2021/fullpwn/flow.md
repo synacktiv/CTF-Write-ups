@@ -21,6 +21,9 @@ PORT     STATE SERVICE VERSION
 |_http-title: Site doesn't have a title (text/html;charset=utf-8).
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
+
+### User flag 
+
 On port 8080 the web server is hosting a Jenkins. Unfortunately default credentials doesn't work.
 
 On port an Airflow application is also prompting us for credentials.
@@ -48,7 +51,7 @@ By digging in this repository we were looking for the user session management. r
 
 By overlooking at flask-login cookie's attributes we saw the field `user_id` was used to identify users: https://github.com/maxcountryman/flask-login/blob/0.4.1/flask_login/login_manager.py#L311.
 
-We forged our own flask cookie we the following python code:
+We forged our own flask cookie with the following python code:
 
 ```python
 #!/usr/bin/env python3
@@ -117,6 +120,8 @@ $ ssh amelia@flow.htb
 amelia@flow:~$ cat user.txt
 HTB{w4tch_0ut_th0s3_0ld_v3rs10ns}
 ```
+
+### Root flag
 
 The `note.txt` in the user folder suggest to drop dags files in `/opt/dags` and they will be proceed. We also can run `sudo airflow` which will process the dags files. We noticed we could hijack a python library, here `os`.
 We just need to submit a dag file with a valid syntax, this can be found on the following [tutorial](https://www.invivoo.com/en/creating-your-first-apache-airflow-dag/).
