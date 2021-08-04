@@ -30,7 +30,7 @@ We decided to do a few write-ups for the challenges we liked.
 
 ### Pwn
 
-[Backtrack](./reverse/backtrack.md "Backtrack")
+[Backtrack](./pwn/backtrack.md "Backtrack")
 
 ### Cloud
 [Kube](./cloud/kube.md "Kube")
