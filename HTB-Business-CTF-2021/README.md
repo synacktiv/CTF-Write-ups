@@ -8,40 +8,41 @@ We decided to do a few write-ups for the challenges we liked.
 
 ### Fullpwn
 
-[BBQ](./bbq.md "BBQ")
+[BBQ](./fullpwn/bbq.md "BBQ")
 
-[Cycle](./cycle.md "Cycle")
+[Cycle](./fullpwn/cycle.md "Cycle")
 
-[Entituber](./entituber.md "Entituber")
+[Entituber](./fullpwn/entituber.md "Entituber")
 
-[Flow](./flow.md "Flow")
+[Flow](./fullpwn/flow.md "Flow")
 
-[Level](./level.md "Level")
+[Level](./fullpwn/level.md "Level")
 
-[Manager](./manager.md "Manager")
+[Manager](./fullpwn/manager.md "Manager")
 
-[Rocket](./rocket.md "Rocket")
+[Rocket](./fullpwn/rocket.md "Rocket")
 
-[Fire](./fire.md "Fire")
+[Fire](./fullpwn/fire.md "Fire")
 
-[Virtual](./virtual.md "Virtual")
+[Virtual](./fullpwn/virtual.md "Virtual")
 
-[Parkor](./parkor.md "Parkor")
+[Parkor](./fullpwn/parkor.md "Parkor")
 
 ### Pwn
 
 [Backtrack](./backtrack.md "Backtrack")
 
 ### Cloud
-[Kube](./kube.md "Kube")
+[Kube](./cloud/kube.md "Kube")
 
-[Supply](./supply.md "Supply")
+[Supply](./cloud/supply.md "Supply")
 
-[Theta](./theta.md "Theta")
+[Theta](./cloud/theta.md "Theta")
 
 ### Crypto
 
-[Got Ransomed](./gotransomed.md "Got Ransomed")
+[Got Ransomed](./crypto/gotransomed.md "Got Ransomed")
 
 ### Reverse
-FIXME
+
+[Backtrack](./reverse/gotransomed.md "Backtrack")
