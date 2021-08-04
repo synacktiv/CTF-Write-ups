@@ -109,6 +109,8 @@ type user.txt
 HTB{9077a_l0ve_H7a}
 ```
 
+### Root flag
+
 When searching for the root flag, we noticed multiple interesting files and directories:
 
 * C:\Users\dev\Documents\\Database.kdbx
@@ -154,7 +156,7 @@ PS C:\Program Files\Oracle\VirtualBox> ./VBoxManage list vms
 "Docker" {11bdf380-f3ae-422e-92f7-6f0f816743d1}
 ```
 
-As we noticed a Docker VM running on VirtualBox, we decided to set up an RDP in order to easily interact with the VM. To do so, we enabled RDP and we changed the local Administrator password:
+As we noticed a Docker VM running on VirtualBox, we decided to set up an RDP access in order to easily interact with the VM. To do so, we enabled RDP and we changed the local Administrator password:
 
 ```bash
 PS> net user Administrator Test1234
