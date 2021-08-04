@@ -30,7 +30,7 @@ We decided to do a few write-ups for the challenges we liked.
 
 ### Pwn
 
-[Backtrack](./backtrack.md "Backtrack")
+[Backtrack](./reverse/backtrack.md "Backtrack")
 
 ### Cloud
 [Kube](./cloud/kube.md "Kube")
@@ -42,7 +42,3 @@ We decided to do a few write-ups for the challenges we liked.
 ### Crypto
 
 [Got Ransomed](./crypto/gotransomed.md "Got Ransomed")
-
-### Reverse
-
-[Backtrack](./reverse/gotransomed.md "Backtrack")
