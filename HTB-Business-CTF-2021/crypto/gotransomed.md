@@ -153,7 +153,7 @@ ax<sup>2</sup> + bx + c = (s<sub>1</sub>x + t<sub>1</sub>)(s<sub>2</sub>x + t<su
 
 ```
 a = 0x3b599770048e9bad
-b = -0x<sup>2</sup>abb61d26f55a8ed5de45cb55e4d39d041417c2885a2580e
+b = -0x2abb61d26f55a8ed5de45cb55e4d39d041417c2885a2580e
 c = 0x1c04599c8b423852045a385916c68dd3eba0aaef4488cae357fc2b52aecd0d256103eac3fc3b2a1
 ```
 
