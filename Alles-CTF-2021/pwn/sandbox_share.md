@@ -4,7 +4,7 @@
 Solution
 --------
 
-The detailed complete solution can be found on [Synacktiv blog](https://www.synacktiv.com/publications/sandbox-share.html).
+The detailed complete solution can be found on [Synacktiv blog](https://www.synacktiv.com/publications/macos-xpc-exploitation-sandbox-share-case-study.html).
 
 Exploit code
 ------------
